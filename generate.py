@@ -12,7 +12,6 @@ import json
 import random
 from pathlib import Path
 
-
 ACTIONS = [
     "steal_car",
     "ignore",
@@ -284,8 +283,10 @@ def build_example(rng: random.Random, idx: int) -> dict:
 
     perception_lines = [
         f"Tommy is at {location}.",
-        f"cash={cash}, wanted_level={wanted}, health={health}, "
-        f"armed={armed}, weapon={weapon}, current_vehicle={vehicle}.",
+        (
+            f"cash={cash}, wanted_level={wanted}, health={health}, "
+            f"armed={armed}, weapon={weapon}, current_vehicle={vehicle}."
+        ),
     ]
 
     if entities:

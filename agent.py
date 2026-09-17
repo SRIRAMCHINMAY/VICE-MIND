@@ -3,10 +3,9 @@ import os
 import re
 from typing import TypedDict
 
-from langgraph.graph import StateGraph, START, END
+from langgraph.graph import END, START, StateGraph
 
 from world import WorldState
-
 
 ACTIONS = [
     "steal_car",
@@ -36,9 +35,12 @@ def perceive(state: GraphState) -> dict:
 
     lines = [
         f"Tommy is at {world.tommy.location}.",
-        f"cash={world.tommy.cash}, wanted_level={world.tommy.wanted_level}, "
-        f"health={world.tommy.health}, armed={world.tommy.armed}, "
-        f"weapon={world.tommy.weapon}, current_vehicle={world.tommy.current_vehicle}.",
+        (
+            f"cash={world.tommy.cash}, wanted_level={world.tommy.wanted_level}, "
+            f"health={world.tommy.health}, armed={world.tommy.armed}, "
+            f"weapon={world.tommy.weapon}, "
+            f"current_vehicle={world.tommy.current_vehicle}."
+        ),
     ]
 
     if not world.nearby_entities:

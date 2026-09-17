@@ -16,6 +16,10 @@ The project is being developed incrementally, starting with a controlled simulat
 
 We have successfully trained and integrated a local language model into an autonomous `perceive → decide → act` loop.
 
+This means the simulation pipeline is complete, not that the agent is already
+connected to Vice City or validated as a robust autonomous controller. The
+trained model artifact is intentionally not stored in this repository.
+
 The current system:
 
 - Uses **Qwen2.5-0.5B-Instruct** as the base language model
@@ -122,7 +126,7 @@ The model produces decisions in the following format:
 
 Phase 1 uses a **programmatically generated dataset** rather than an external LLM teacher.
 
-`generate_dataset.py` creates randomized Vice City situations involving:
+`generate.py` creates randomized Vice City situations involving:
 
 - cars
 - pedestrians
@@ -357,7 +361,10 @@ VICE_MIND/
 ├── train.py
 ├── run_sandbox.py
 ├── test_scenarios.py
-├── requirements.txt
+├── tests/
+│   └── test_agent.py
+├── pyproject.toml
+├── uv.lock
 │
 ├── dataset/
 │   └── phase1.jsonl
@@ -372,18 +379,17 @@ The trained model files are intentionally excluded from Git because they are lar
 
 # Environment
 
-The project is developed using a Mamba environment.
-
-Example:
+The project uses `uv` for Python version management, dependency installation,
+and lockfile-based reproducibility.
 
 ```bash
-mamba create -n Tommy-sandbox python=3.11
-mamba activate Tommy-sandbox
+uv python install 3.11
+uv sync --group dev
 ```
 
-Python dependencies are installed through `pip` inside the environment.
-
-This allows Mamba to manage the Python environment while PyTorch, Transformers, PEFT, LangGraph and related packages are installed through Python's package ecosystem.
+See [`docs/UV_SETUP.md`](docs/UV_SETUP.md) for GPU notes and the complete
+command reference. See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the
+full code walkthrough.
 
 ---
 
