@@ -1,0 +1,29 @@
+[project]
+name = "vice-mind"
+version = "0.1.0"
+description = "A local language-model agent prototype for simulated Vice City decision making"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "accelerate>=1.2,<2",
+    "datasets>=3.2,<4",
+    "langgraph>=0.2,<1",
+    "peft>=0.14,<1",
+    "pydantic>=2.10,<3",
+    "torch>=2.5,<3",
+    "transformers>=4.47,<5",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3,<9",
+    "ruff>=0.9,<1",
+]
+
+[tool.uv]
+# The repository contains runnable scripts rather than an importable package.
+package = false
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"

@@ -27,3 +27,6 @@ models/
 # Hugging Face / Transformers cache
 .huggingface/
 .cache/
+
+# Private learning notes
+docs/learning_roadmap.md
